@@ -1,3 +1,4 @@
+from email.policy import default
 from pyexpat import model
 from django.db import models
 
@@ -14,12 +15,12 @@ class Brands(models.Model):
     brandId = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, null=False, blank=False)
     #logo = models.URLField(max_length=200)
-    logo = models.ImageField(upload_to='imagenes/', verbose_name='Imagen')
+    logo = models.ImageField(upload_to='Photos/', blank='', default="")
 
 class Deals(models.Model):
     dealId = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, null=False, blank=False)
     store = models.IntegerField(null=False, blank=False)
     #image = models.URLField(max_length=200)
-    image = models.ImageField(upload_to='imagenes/', verbose_name='Imagen')  
+    image = models.ImageField(upload_to='imagenes/', blank='', default="")  
     price =   models.DecimalField(max_digits = 10, decimal_places=2)
