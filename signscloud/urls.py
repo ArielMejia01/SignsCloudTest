@@ -15,5 +15,6 @@ urlpatterns=[
     #url(r'^store/([0-9]+)$', views.storeApi)
     path('store', views.storeApi, name='store'),
     path('brand', views.brandApi, name='brand'),
+    path('deal', views.dealApi, name='deal'),
     #path('save', views.SaveFile, name='save'),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

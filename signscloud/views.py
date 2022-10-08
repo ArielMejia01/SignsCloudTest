@@ -43,7 +43,19 @@ def brandApi(request, id=0):
             brand_serializer.save()
             return JsonResponse("Agregado satisfactoriamente", safe=False)
         return JsonResponse("Ocurrio un error", safe=False)
-
+@csrf_exempt  
+def dealApi(request, id=0):
+    if request.method=='GET':
+        deal = Deals.objects.all()
+        deal_serializer = DealSerializer(deal, many=True)
+        return JsonResponse(deal_serializer.data, safe=False)
+    elif request.method=='POST':
+        deal_data = JSONParser().parse(request)
+        deal_serializer = DealSerializer(data=deal_data)
+        if deal_serializer.is_valid():
+            deal_serializer.save()
+            return JsonResponse("Agregado satisfactoriamente", safe=False)
+        return JsonResponse("Ocurrio un error", safe=False)
 
 #Guardar el archivo image y retornar en json el nombre de la imagen
 """@csrf_exempt
