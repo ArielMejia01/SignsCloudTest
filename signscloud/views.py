@@ -1,4 +1,4 @@
-import imp
+
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
@@ -69,3 +69,6 @@ class ImagenJson(brandApi):
         print(str(self.parser_classes))
         return JsonResponse({'parsers': ' '.join(map(str, self.parser_classes))}, status=204)
 """
+
+
+        

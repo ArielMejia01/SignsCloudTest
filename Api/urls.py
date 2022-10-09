@@ -22,4 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #url(r'^', include('signscloud.urls'))
     path('', include('signscloud.urls')),
+    #path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    path('accounts/', include('allauth.urls')),
 ]
