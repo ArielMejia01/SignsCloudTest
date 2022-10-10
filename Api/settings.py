@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'django_celery_results',
 ]
 
 # Instruccion para permitir que todos los dominios accedan a la api
@@ -172,4 +173,18 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'America/Guatemala'
 
+CELERY_RESULT_BACKEND = 'django-db'
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_USE_TLS = True
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER ='cmejia@gmail.com'
+EMAIL_HOST_PASSWORD = "cgdjtyzsqcuorfi"
+DEFAULT_FROM_EMAIL = 'Celery <cmejia@gmail.com>'

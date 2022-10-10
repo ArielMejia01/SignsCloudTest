@@ -1,4 +1,5 @@
 
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
@@ -10,6 +11,7 @@ from rest_framework.decorators import api_view
 from signscloud.models import Stores, Brands, Deals
 from signscloud.serializers import StoreSerializer, BrandSerializer, DealSerializer
 
+from .tasks import test_func, send_mail_func
 #modulo de almacenamiento determinado
 #from django.core.files.storage import default_storage
 
@@ -70,5 +72,11 @@ class ImagenJson(brandApi):
         return JsonResponse({'parsers': ' '.join(map(str, self.parser_classes))}, status=204)
 """
 
+@csrf_exempt
+def test(request):
+    test_func.delay()
+    return HttpResponse("Hecho celery")
 
-        
+def send_mail_to_all(request):
+    send_mail_func.delay()
+    return HttpResponse("Enviado")
